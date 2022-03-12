@@ -1,0 +1,22 @@
+﻿<Window x:Class="WpfWithResourceFile.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfWithResourceFile"
+        xmlns:p="clr-namespace:WpfWithResourceFile.Properties"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <StackPanel.Resources>
+            <local:Bool2VisibleConvert x:Key="bool2VisibleConvert"></local:Bool2VisibleConvert>
+            <local:Bool2VisibleReverseConvert x:Key="bool2VisibleReverseConvert"></local:Bool2VisibleReverseConvert>
+        </StackPanel.Resources>
+        <TextBlock Visibility="{Binding IsHidden, Converter={StaticResource bool2VisibleConvert }}">Always visible</TextBlock>
+        <TextBlock Visibility="{Binding IsHidden, Converter={StaticResource bool2VisibleConvert }}" Text="{x:Static p:Resources.AlwaysVisible}"></TextBlock>
+
+        <TextBlock Visibility="{Binding IsHidden, Converter={StaticResource bool2VisibleReverseConvert }}">Hidden Default</TextBlock>
+        <TextBlock Visibility="{Binding IsHidden, Converter={StaticResource bool2VisibleReverseConvert }}" Text="{x:Static p:Resources.HiddenDefault}"></TextBlock>
+        <Button Click="Button_Click">Switch Hidden Status</Button>
+    </StackPanel>
+</Window>
